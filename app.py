@@ -18,14 +18,14 @@ model = joblib.load("bbbp_model.pkl")
 
 def extract_features(mol):
     """Extract 5 Lipinski descriptors + 2048-bit Morgan Fingerprint."""
-    mw = Descriptors.MolWt(mol)
-    logp = Descriptors.MolLogP(mol)
-    tpsa = Descriptors.TPSA(mol)
-    hbd = Descriptors.NumHDonors(mol)
-    hba = Descriptors.NumHAcceptors(mol)
+    mw = Descriptors.MolWt(mol)          # type: ignore[attr-defined]
+    logp = Descriptors.MolLogP(mol)      # type: ignore[attr-defined]
+    tpsa = Descriptors.TPSA(mol)         # type: ignore[attr-defined]
+    hbd = Descriptors.NumHDonors(mol)    # type: ignore[attr-defined]
+    hba = Descriptors.NumHAcceptors(mol) # type: ignore[attr-defined]
     physchem = [mw, logp, tpsa, hbd, hba]
 
-    fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)
+    fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)  # type: ignore[attr-defined]
     fp_array = np.zeros((2048,), dtype=np.int8)
     DataStructs.ConvertToNumpyArray(fp, fp_array)
 

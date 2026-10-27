@@ -1,0 +1,2 @@
+# Exclude HTML from GitHub language statistics so the repository reflects Python
+*.html linguist-detectable=false

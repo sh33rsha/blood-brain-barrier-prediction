@@ -1203,7 +1203,8 @@
             const matched = Object.values(PRESET_DATABASE).find(m => m.smiles === smiles);
 
             try {
-                const response = await fetch("http://127.0.0.1:5000/predict", {
+                const apiUrl = (window.location.protocol.startsWith('http')) ? '/predict' : 'http://127.0.0.1:5000/predict';
+                const response = await fetch(apiUrl, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
